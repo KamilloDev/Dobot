@@ -34,7 +34,7 @@ class Main(tk.Frame):
 		# kameraet på jeres skærm.
 		# Hvis I sætter et USB-kamera til, skal I
 		# formentlig bruge Cam(1)
-		self.cam = Cam(0)
+		self.cam = Cam(1)
 		cam = threading.Thread(target=self.update_view)
 		cam.start()
 		self.dobot = pydobot.Dobot(port="COM8")
@@ -148,6 +148,10 @@ class Main(tk.Frame):
 	
 	def calibrate(self):
 		r = 90
+		self.red = 0
+		self.blue = 0
+		self.yellow = 0
+		self.green = 0
 		self.dobot.move_to(200, 50, 0, r, True)
 		for x in range(4):
 			for y in range(4):
