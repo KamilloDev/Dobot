@@ -30,5 +30,3 @@ class Cam():
 			return self.hsv_frame[y][x]
 		else:
 			return [0,0,0]
-		print("67 kamil")
-
