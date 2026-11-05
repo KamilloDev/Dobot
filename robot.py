@@ -159,19 +159,19 @@ class Main(tk.Frame):
 				if index == 0 :
 					print(f"{col} - Yellow!")
 					self.plade[y][x] = 0
-					yellow += 1
+					self.yellow += 1
 				elif index == 1:
 					print(f"{col} - Red!")
 					self.plade[y][x] = 1
-					red += 1
+					self.red += 1
 				elif index == 2:
 					print(f"{col} - Blue!")
 					self.plade[y][x] = 2
-					blue += 1
+					self.blue += 1
 				elif index == 3:
 					print(f"{col} - Green!")
 					self.plade[y][x] = 3
-					green += 1
+					self.green += 1
 		
 		self.label_yellow.configure(text=f"Ammount of yellow is: {self.yellow}")
 		self.label_red.configure(text=f"Ammount of red is: {self.red}")
