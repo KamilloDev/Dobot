@@ -35,8 +35,6 @@ class Main(tk.Frame):
 		# Hvis I sætter et USB-kamera til, skal I
 		# formentlig bruge Cam(1)
 		self.cam = Cam(0)
-		cam = threading.Thread(target=self.update_view)
-		cam.start()
 		self.dobot = pydobot.Dobot(port="COM8")
 
 		self.create_interface()
@@ -96,6 +94,10 @@ class Main(tk.Frame):
 			self.x = 0
 		else:
 			self.x += 1
+   
+	def thread_get_color_plade(self):
+		get_color_thread_plade = threading.Thread(target=self.get_color_plade)
+		get_color_thread_plade.start()
 
 	def get_color_plade(self):
 		selcted_color = self.combo_color.get()
@@ -116,6 +118,9 @@ class Main(tk.Frame):
 					self.move_specific(x, y, self.x, self.y)
 					self.increment_coords()
 
+	def thread_get_color(self):
+		get_color_thread = threading.Thread(target=self.get_color)
+		get_color_thread.start()
 
 	def get_color(self):
 		selcted_color = self.combo_color.get()
@@ -144,7 +149,10 @@ class Main(tk.Frame):
 					print(f"{col} - Green!")
 					self.move_specific(x, y, self.x, self.y)
 					self.increment_coords()
-					
+	
+	def thread_calibrate(self):
+		calibrate_thread = threading.Thread(target=self.calibrate)
+		calibrate_thread.start()	
 	
 	def calibrate(self):
 		r = 90
@@ -200,9 +208,9 @@ class Main(tk.Frame):
 		self.titel = tk.Label(self.main_frame, text="Brick terminal")
 		self.combo_color = ttk.Combobox(self.main_frame)
 		self.combo_color['values'] = ['Yellow', 'Red', 'Blue', 'Green']
-		self.get = tk.Button(self.main_frame, text="Get", command=self.get_color_plade)
-		self.scan_and_go = tk.Button(self.main_frame, text="Scan and get", command=self.get_color)
-		self.calibrate_bt = tk.Button(self.main_frame, text="Calibrate", command=self.calibrate)
+		self.get = tk.Button(self.main_frame, text="Get", command=self.thread_get_color_plade)
+		self.scan_and_go = tk.Button(self.main_frame, text="Scan and get", command=self.thread_get_color)
+		self.calibrate_bt = tk.Button(self.main_frame, text="Calibrate", command=self.thread_calibrate)
 		self.label_yellow = tk.Label(self.main_frame, text="Scan before getting yellow ammount!")
 		self.label_red = tk.Label(self.main_frame, text="Scan before getting red ammount!")
 		self.label_blue = tk.Label(self.main_frame, text="Scan before getting blue ammount!")
