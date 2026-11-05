@@ -124,6 +124,7 @@ class Main(tk.Frame):
 		for x in range(4):
 			for y in range(4):
 				self.dobot.move_to(274-46+(x*20), 66-16+(y*20),-30,r,True)
+				self.cam.make_frame()
 				col = self.cam.read_color_hsv(320,240).tolist()
 				index = self.get_closest_color(col[0])
 
@@ -155,6 +156,7 @@ class Main(tk.Frame):
 		for x in range(4):
 			for y in range(4):
 				self.dobot.move_to(274-46+(x*20), 66-16+(y*20),-30,r,True)
+				self.cam.make_frame()
 				col = self.cam.read_color_hsv(320,240).tolist()
 				index = self.get_closest_color(col[0])
 		
