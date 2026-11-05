@@ -71,7 +71,7 @@ class Main(tk.Frame):
 	def move_specific(self, old_x, old_y, new_x, new_y):
 		r = 90
 		self.dobot.move_to(274+(old_x*20), 66+(old_y*20), 20, r, True)
-		self.dobot.move_to(274+(old_x*20), 66+(old_y*20), -40, r, True)
+		self.dobot.move_to(274+(old_x*20), 66+(old_y*20), -38, r, True)
 		self.dobot.suck(True)
 		self.dobot.move_to(274+(old_x*20), 66+(old_y*20), 20, r, True)
 		self.dobot.move_to(270+(new_x*20), -37+(new_y*20)-100, 20, r, True)
